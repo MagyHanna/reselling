@@ -1,0 +1,252 @@
+---
+alwaysApply: true
+---
+
+
+# Tailwind CSS v4 Guidelines
+
+
+## Core Principles
+
+
+This project uses **Tailwind CSS v4**, which introduces a CSS-first configuration approach. All styling and configuration must follow v4 conventions.
+
+
+## Installation & Setup
+
+
+- Install using: `npm install tailwindcss@next @tailwindcss/postcss@next`
+- Configuration is done via CSS, not JavaScript config files
+- No `tailwind.config.js` or `tailwind.config.ts` files should be used
+
+
+## CSS Configuration
+
+
+### Import Structure
+Always use the following import structure in your main CSS file (e.g., `globals.css`):
+
+
+```css
+@import "tailwindcss";
+```
+
+
+### Theme Customization
+Use the `@theme` directive to customize design tokens:
+
+
+```css
+@import "tailwindcss";
+
+
+@theme {
+ --color-primary: #3b82f6;
+ --color-secondary: #8b5cf6;
+ --font-sans: "Inter", system-ui, sans-serif;
+ --spacing-custom: 2.5rem;
+ --breakpoint-3xl: 1920px;
+}
+```
+
+
+### Custom Utilities
+Define custom utilities using standard CSS:
+
+
+```css
+@utility my-utility {
+ color: red;
+ font-weight: bold;
+}
+```
+
+
+## PostCSS Configuration
+
+
+Use the following PostCSS setup:
+
+
+```javascript
+export default {
+ plugins: {
+   '@tailwindcss/postcss': {}
+ }
+}
+```
+
+
+## Key Differences from v3
+
+
+1. **No JavaScript Config**: Tailwind v4 uses CSS-native configuration instead of `tailwind.config.js`
+2. **CSS Variables**: All theme values are CSS custom properties by default
+3. **Simplified Imports**: Just `@import "tailwindcss"` instead of multiple directives
+4. **Better Performance**: Faster build times and smaller CSS output
+5. **Native Cascade Layers**: Built-in support for CSS cascade layers
+
+
+## Design Tokens & Theming
+
+
+- Use `--color-*` for color tokens
+- Use `--font-*` for font family tokens
+- Use `--spacing-*` for custom spacing values
+- Use `--breakpoint-*` for custom breakpoints
+- All tokens are automatically available as utility classes
+
+
+## React/Next.js Integration
+
+
+- Import CSS in your root layout: `import './globals.css'`
+- Use className prop with standard Tailwind utilities
+- All utilities work the same as v3, but configuration is different
+- Dynamic class names should use complete class strings (Tailwind scans for complete class names)
+
+
+## Component Styling Best Practices
+
+
+1. **Use Utility Classes**: Prefer utility classes over custom CSS
+2. **Compose with CSS Variables**: Use theme variables for consistency
+3. **Responsive Design**: Use responsive modifiers (sm:, md:, lg:, etc.)
+4. **Dark Mode**: Use `dark:` modifier for dark mode styles
+5. **State Variants**: Use hover:, focus:, active:, etc. for interactive states
+
+
+## File Organization
+
+
+```
+app/
+ └── globals.css          # Main CSS file with @import and @theme
+components/
+ └── ui/                  # Component library
+lib/
+ └── utils.ts             # Utility functions (e.g., cn helper)
+```
+
+
+## Utility Helper Function
+
+
+Always use a `cn()` utility function for conditional classes:
+
+
+```typescript
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+
+export function cn(...inputs: ClassValue[]) {
+ return twMerge(clsx(inputs))
+}
+```
+
+
+## Forbidden Practices
+
+
+❌ **DO NOT**:
+- Create `tailwind.config.js` or `tailwind.config.ts` files
+- Use old v3 directives like `@tailwind base;` `@tailwind components;` `@tailwind utilities;`
+- Configure Tailwind in JavaScript
+- Mix v3 and v4 configuration approaches
+
+
+✅ **DO**:
+- Use `@import "tailwindcss"` in CSS
+- Configure theme with `@theme` directive in CSS
+- Use CSS custom properties for theming
+- Follow CSS-first configuration approach
+
+
+## Content Scanning
+
+
+Tailwind v4 automatically scans:
+- All `.tsx`, `.ts`, `.jsx`, `.js` files
+- Template literals and className attributes
+- No manual content configuration needed
+
+
+## Production Optimization
+
+
+- Tailwind v4 automatically purges unused styles
+- CSS output is optimized by default
+- No additional purge configuration needed
+
+
+## Migration Notes
+
+
+When migrating from v3:
+1. Remove `tailwind.config.js` or `tailwind.config.ts`
+2. Replace old directives with `@import "tailwindcss"`
+3. Move theme configuration to `@theme` blocks in CSS
+4. Update PostCSS config to use `@tailwindcss/postcss`
+5. Update package dependencies to v4 versions
+
+
+## Example: Complete Setup
+
+
+**globals.css:**
+```css
+@import "tailwindcss";
+
+
+@theme {
+ /* Custom colors */
+ --color-brand: #6366f1;
+ --color-accent: #ec4899;
+  /* Custom fonts */
+ --font-display: "Outfit", sans-serif;
+  /* Custom spacing */
+ --spacing-section: 5rem;
+}
+
+
+/* Optional: Custom utilities */
+@utility gradient-text {
+ background: linear-gradient(to right, var(--color-brand), var(--color-accent));
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+}
+```
+
+
+**postcss.config.mjs:**
+```javascript
+export default {
+ plugins: {
+   '@tailwindcss/postcss': {}
+ }
+}
+```
+
+
+**package.json:**
+```json
+{
+ "dependencies": {
+   "tailwindcss": "^4.0.0",
+   "@tailwindcss/postcss": "^4.0.0"
+ }
+}
+```
+
+
+## Resources
+
+
+- Official Docs: https://tailwindcss.com/docs
+- v4 Beta Docs: https://tailwindcss.com/blog/tailwindcss-v4-alpha
+- Migration Guide: Check official Tailwind blog for latest v4 migration guides
+
+
+
+

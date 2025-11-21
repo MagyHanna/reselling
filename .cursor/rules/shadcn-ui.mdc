@@ -1,0 +1,156 @@
+---
+alwaysApply: true
+---
+   })
+ }
+
+
+ return (
+   <Form {...form}>
+     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+       <FormField
+         control={form.control}
+         name="name"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel>Name</FormLabel>
+             <FormControl>
+               <Input placeholder="John Doe" {...field} />
+             </FormControl>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+      
+       <FormField
+         control={form.control}
+         name="email"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel>Email</FormLabel>
+             <FormControl>
+               <Input type="email" placeholder="john@example.com" {...field} />
+             </FormControl>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+      
+       <FormField
+         control={form.control}
+         name="category"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel>Category</FormLabel>
+             <Select onValueChange={field.onChange} defaultValue={field.value}>
+               <FormControl>
+                 <SelectTrigger>
+                   <SelectValue placeholder="Select a category" />
+                 </SelectTrigger>
+               </FormControl>
+               <SelectContent>
+                 <SelectItem value="support">Support</SelectItem>
+                 <SelectItem value="sales">Sales</SelectItem>
+                 <SelectItem value="feedback">Feedback</SelectItem>
+               </SelectContent>
+             </Select>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+      
+       <FormField
+         control={form.control}
+         name="message"
+         render={({ field }) => (
+           <FormItem>
+             <FormLabel>Message</FormLabel>
+             <FormControl>
+               <Textarea placeholder="Your message here..." {...field} />
+             </FormControl>
+             <FormDescription>
+               Tell us how we can help you.
+             </FormDescription>
+             <FormMessage />
+           </FormItem>
+         )}
+       />
+      
+       <Button type="submit">Submit</Button>
+     </form>
+   </Form>
+ )
+}
+```
+
+
+## Resources
+
+
+- **Official Documentation**: https://ui.shadcn.com
+- **Component Examples**: https://ui.shadcn.com/docs/components
+- **Radix UI Docs**: https://www.radix-ui.com
+- **GitHub Repository**: https://github.com/shadcn-ui/ui
+- **Themes**: https://ui.shadcn.com/themes
+
+
+## Quick Reference
+
+
+### Most Commonly Used Components
+
+
+1. **Button** - Primary interaction element
+2. **Card** - Container for content
+3. **Input** - Text input fields
+4. **Form** - Form management with validation
+5. **Dialog** - Modal dialogs
+6. **Select** - Dropdown selections
+7. **Toast** - Notifications
+8. **Table** - Data tables
+9. **Tabs** - Tabbed interfaces
+10. **Dropdown Menu** - Context menus
+
+
+### Installation Commands
+
+
+```bash
+# Forms
+npx shadcn@latest add form input label textarea select checkbox radio-group switch
+
+
+# Feedback
+npx shadcn@latest add toast alert alert-dialog dialog
+
+
+# Navigation
+npx shadcn@latest add dropdown-menu navigation-menu command tabs
+
+
+# Layout
+npx shadcn@latest add card separator accordion
+
+
+# Data Display
+npx shadcn@latest add table badge avatar progress skeleton
+```
+
+
+## Summary
+
+
+shadcn/ui is your primary UI component library. It provides:
+- ✅ Beautiful, accessible components out of the box
+- ✅ Full control and customization (you own the code)
+- ✅ Excellent TypeScript support
+- ✅ Perfect integration with Tailwind CSS v4
+- ✅ Built-in dark mode support
+- ✅ Comprehensive documentation
+
+
+Always use shadcn/ui components for UI elements before creating custom components or using other libraries. If a component doesn't exist, compose it from existing shadcn/ui primitives or request it be added via the CLI.
+
+
+
+
