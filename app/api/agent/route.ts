@@ -1,3 +1,21 @@
+/**
+ * POST /api/agent
+ * 
+ * Generates an AI-powered search plan using OpenAI GPT.
+ * This endpoint is used by the search form to provide users with
+ * a clear plan of how the search will be conducted.
+ * 
+ * Request Body:
+ *   - sites: string[] (required) - Array of shopping site names/URLs
+ *   - minDiscount: number (required) - Minimum discount percentage (0-100)
+ *   - maxDiscount: number (required) - Maximum discount percentage (0-100)
+ *   - keywords: string (optional) - Product keywords to filter by
+ * 
+ * Response:
+ *   - plan: string - AI-generated search plan description
+ *   - debugInfo: object - Debug information about the request
+ */
+
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
